@@ -1,10 +1,13 @@
 package com.example.carapi.controller;
 
+import com.example.carapi.model.Vehicle;
 import com.example.carapi.service.VehicleService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/vehicles")
@@ -14,6 +17,11 @@ public class VehicleController {
 
     public VehicleController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Vehicle>> findAllVehicles(){
+        return new ResponseEntity<>(vehicleService.findAllVehicles(), HttpStatus.OK );
     }
 
     @GetMapping(path = "/cost")

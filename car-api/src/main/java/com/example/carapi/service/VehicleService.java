@@ -4,6 +4,8 @@ import com.example.carapi.model.Vehicle;
 import com.example.carapi.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VehicleService {
 
@@ -12,6 +14,10 @@ public class VehicleService {
     public VehicleService(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }
+
+    public List<Vehicle> findAllVehicles(){
+        return vehicleRepository.findAll();
+    };
 
     public void createVehicle(Vehicle vehicle){
         Vehicle v = vehicleRepository.findVehicleByVINAndINO(vehicle.getVIN(), vehicle.getINO());
