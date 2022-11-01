@@ -3,10 +3,12 @@ package com.example.carapi.controller;
 import com.example.carapi.model.Vehicle;
 import com.example.carapi.service.VehicleService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -20,11 +22,13 @@ public class VehicleController {
     }
 
     @GetMapping
+    @RolesAllowed({"user", "admin"})
     public ResponseEntity<List<Vehicle>> findAllVehicles(){
         return new ResponseEntity<>(vehicleService.findAllVehicles(), HttpStatus.OK );
     }
 
     @GetMapping(path = "/cost")
+    @RolesAllowed({"user", "admin"})
     public ResponseEntity<Object> findVehicleCost(@RequestBody ObjectNode json){
         String VIN = json.get("VIN").asText();
         String INO = json.get("INO").asText();
@@ -44,6 +48,7 @@ public class VehicleController {
     }
 
     @PostMapping(path = "add")
+    @RolesAllowed("admin")
     public ResponseEntity<String> addVehicle(@RequestBody Vehicle vehicle){
 
         if(vehicle.getVin() == null
@@ -57,6 +62,7 @@ public class VehicleController {
     }
 
     @DeleteMapping(path = "delete/{id}")
+    @RolesAllowed({"admin"})
     public ResponseEntity<String> deleteVehicle(@PathVariable(name = "id") Integer id){
         return vehicleService.deleteVehicle(id);
     }
