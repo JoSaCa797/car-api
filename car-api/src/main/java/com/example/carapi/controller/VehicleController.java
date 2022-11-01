@@ -43,4 +43,22 @@ public class VehicleController {
 
     }
 
+    @PostMapping(path = "add")
+    public ResponseEntity<String> addVehicle(@RequestBody Vehicle vehicle){
+
+        if(vehicle.getVin() == null
+                || vehicle.getName() == null
+                || vehicle.getIno() == null
+                || vehicle.getCost() == null){
+            return new ResponseEntity<>("Vehicle could not be added", HttpStatus.BAD_REQUEST);
+        }
+
+        return vehicleService.createVehicle(vehicle);
+    }
+
+    @DeleteMapping(path = "delete/{id}")
+    public ResponseEntity<String> deleteVehicle(@PathVariable(name = "id") Integer id){
+        return vehicleService.deleteVehicle(id);
+    }
+
 }

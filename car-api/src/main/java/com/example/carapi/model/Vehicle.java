@@ -2,7 +2,6 @@ package com.example.carapi.model;
 
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "vehicle")
@@ -10,36 +9,36 @@ public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String VIN;
+    private Integer id;
+    private String vin;
     private String name;
-    private String INO;
-    private double cost;
+    private String ino;
+    private Double cost;
 
     public Vehicle(){
     }
 
     public Vehicle(String VIN, String name, String INO, double cost) {
-        this.VIN = VIN;
+        this.vin = VIN;
         this.name = name;
-        this.INO = INO;
+        this.ino = INO;
         this.cost = cost;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getVIN() {
-        return VIN;
+    public String getVin() {
+        return vin;
     }
 
-    public void setVIN(String VIN) {
-        this.VIN = VIN;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
     public String getName() {
@@ -50,19 +49,19 @@ public class Vehicle {
         this.name = name;
     }
 
-    public String getINO() {
-        return INO;
+    public String getIno() {
+        return ino;
     }
 
-    public void setINO(String INO) {
-        this.INO = INO;
+    public void setIno(String ino) {
+        this.ino = ino;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 }

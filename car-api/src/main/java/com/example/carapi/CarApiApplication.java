@@ -1,6 +1,7 @@
 package com.example.carapi;
 
 import com.example.carapi.model.Vehicle;
+import com.example.carapi.repository.VehicleRepository;
 import com.example.carapi.service.VehicleService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,10 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CarApiApplication implements CommandLineRunner {
 
-	private final VehicleService vehicleService;
+	private final VehicleRepository vehicleRepository;
 
-	public CarApiApplication(VehicleService vehicleService) {
-		this.vehicleService = vehicleService;
+	public CarApiApplication(VehicleRepository vehicleRepository) {
+		this.vehicleRepository = vehicleRepository;
 	}
 
 	public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class CarApiApplication implements CommandLineRunner {
 		Vehicle[] vehicles = {v1, v2, v3};
 
 		for (Vehicle v : vehicles){
-			vehicleService.createVehicle(v);
+			vehicleRepository.save(v);
 		}
 	}
 }
